@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeastFlow - Gourmet Food Delivered Instantly</title>
+    <!-- Google Fonts: Outfit (headings) & Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -18,10 +24,12 @@
             </a>
 
             <!-- Search Bar -->
-            <form class="search-bar" role="search" action="/search" method="GET">
+            <form class="search-bar" role="search" id="search-form" onsubmit="event.preventDefault();">
                 <label for="search-input" class="visually-hidden">Search dishes, cuisines, or restaurants</label>
                 <input type="search" id="search-input" class="search-bar__input" placeholder="Search dishes, cuisines, or restaurants...">
-                <button type="submit" class="search-bar__button" aria-label="Submit search">Search</button>
+                <button type="submit" class="search-bar__button" aria-label="Submit search">
+                    <span>🔍</span>
+                </button>
             </form>
 
             <!-- Navigation Links -->
@@ -44,12 +52,14 @@
 
             <!-- User Actions -->
             <div class="header__actions">
-                <a href="#cart" class="cart-btn" aria-label="Shopping Cart">
+                <button type="button" class="cart-btn" id="cart-drawer-toggle" aria-label="Shopping Cart">
                     <span class="cart-btn__icon">🛒</span>
-                    <span class="cart-btn__badge" aria-label="4 items in cart">4</span>
-                </a>
-                <a href="#login" class="btn btn--outline">Sign In</a>
-                <a href="#register" class="btn btn--primary">Sign Up</a>
+                    <span class="cart-btn__badge" id="cart-badge" aria-label="0 items in cart">0</span>
+                </button>
+                <div id="header-auth-container" class="header__auth-container">
+                    <a href="#login" id="nav-signin-btn" class="btn btn--outline btn--sm">Sign In</a>
+                    <a href="#register" id="nav-signup-btn" class="btn btn--primary btn--sm hide-mobile">Sign Up</a>
+                </div>
             </div>
         </div>
     </header>
@@ -60,12 +70,12 @@
         <section class="hero" id="home">
             <div class="hero__container">
                 <div class="hero__content">
-                    <span class="hero__badge">Top Rated Food Delivery App of 2026</span>
+                    <span class="hero__badge">🏆 Top Rated Food Delivery App of 2026</span>
                     <h1 class="hero__title">Delicious food, delivered <span class="hero__title--highlight">to your doorstep</span>.</h1>
                     <p class="hero__description">Order from your favorite local restaurants, tracked in real-time, prepared with premium ingredients, and delivered hot and fresh.</p>
                     
                     <!-- Address / Find Food Form -->
-                    <form class="address-locator" action="/find-food" method="GET">
+                    <form class="address-locator" id="address-form" onsubmit="event.preventDefault();">
                         <div class="address-locator__wrapper">
                             <label for="delivery-address" class="visually-hidden">Enter delivery address</label>
                             <span class="address-locator__icon">📍</span>
@@ -94,7 +104,7 @@
                 <!-- Hero Graphic Area -->
                 <figure class="hero__graphic-wrapper">
                     <!-- Semantic SVG representation of food/delivery vector art -->
-                    <svg class="hero__svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="500" height="500">
+                    <svg class="hero__svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <circle cx="250" cy="250" r="210" fill="#2d2d35" />
                         <circle cx="250" cy="250" r="190" fill="#141418" stroke="#ff5e3a" stroke-width="6" />
                         <circle cx="250" cy="250" r="160" fill="#ffb800" />
@@ -112,7 +122,7 @@
         </section>
 
         <!-- Cuisine Categories Section -->
-        <section class="categories" id="categories">
+        <section class="categories" id="categories-section">
             <div class="categories__container">
                 <div class="section-header">
                     <h2 class="section-header__title">Explore Cuisines</h2>
@@ -120,53 +130,61 @@
                 </div>
 
                 <div class="categories__grid">
+                    <!-- All -->
+                    <button class="category-card category-card--active" data-category="all" aria-label="Show all categories">
+                        <div class="category-card__icon-wrapper">
+                            <span class="category-card__icon">🍽️</span>
+                        </div>
+                        <span class="category-card__name">All</span>
+                    </button>
+
                     <!-- Pizza -->
-                    <div class="category-card category-card--active">
+                    <button class="category-card" data-category="pizza" aria-label="Show pizza">
                         <div class="category-card__icon-wrapper">
                             <span class="category-card__icon">🍕</span>
                         </div>
                         <span class="category-card__name">Pizza</span>
-                    </div>
+                    </button>
 
                     <!-- Burgers -->
-                    <div class="category-card">
+                    <button class="category-card" data-category="burgers" aria-label="Show burgers">
                         <div class="category-card__icon-wrapper">
                             <span class="category-card__icon">🍔</span>
                         </div>
                         <span class="category-card__name">Burgers</span>
-                    </div>
+                    </button>
 
                     <!-- Sushi -->
-                    <div class="category-card">
+                    <button class="category-card" data-category="sushi" aria-label="Show sushi">
                         <div class="category-card__icon-wrapper">
                             <span class="category-card__icon">🍣</span>
                         </div>
                         <span class="category-card__name">Sushi</span>
-                    </div>
+                    </button>
 
                     <!-- Desserts -->
-                    <div class="category-card">
+                    <button class="category-card" data-category="desserts" aria-label="Show desserts">
                         <div class="category-card__icon-wrapper">
                             <span class="category-card__icon">🍰</span>
                         </div>
                         <span class="category-card__name">Desserts</span>
-                    </div>
+                    </button>
 
                     <!-- Salads -->
-                    <div class="category-card">
+                    <button class="category-card" data-category="salads" aria-label="Show salads">
                         <div class="category-card__icon-wrapper">
                             <span class="category-card__icon">🥗</span>
                         </div>
                         <span class="category-card__name">Salads</span>
-                    </div>
+                    </button>
 
                     <!-- Drinks -->
-                    <div class="category-card">
+                    <button class="category-card" data-category="drinks" aria-label="Show drinks">
                         <div class="category-card__icon-wrapper">
                             <span class="category-card__icon">🍹</span>
                         </div>
                         <span class="category-card__name">Drinks</span>
-                    </div>
+                    </button>
                 </div>
             </div>
         </section>
@@ -179,17 +197,21 @@
                     <p class="section-header__subtitle">Ordered most frequently by food lovers near you</p>
                 </div>
 
-                <div class="menu__grid">
-                    <!-- Dish Card 1 -->
-                    <article class="dish-card">
+                <div class="menu__grid" id="dishes-grid">
+                    <!-- Dish Card 1 (Pizza) -->
+                    <article class="dish-card" data-id="p1" data-category="pizza">
                         <div class="dish-card__media">
                             <svg class="dish-card__placeholder" width="100%" height="200" fill="#1a1a20" xmlns="http://www.w3.org/2000/svg" aria-label="Truffle Mushroom Pizza Graphic">
                                 <rect width="100%" height="100%" fill="#1a1a20" />
                                 <circle cx="140" cy="100" r="60" fill="#ffb800" opacity="0.8"/>
+                                <path d="M110 90 L170 90 L140 140 Z" fill="#d9381e" />
+                                <circle cx="130" cy="95" r="5" fill="#fff" />
+                                <circle cx="150" cy="95" r="5" fill="#fff" />
+                                <circle cx="140" cy="115" r="5" fill="#fff" />
                             </svg>
                             <div class="dish-card__badges">
                                 <span class="dish-card__tag dish-card__tag--bestseller">Bestseller</span>
-                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Truffle Mushroom Pizza to favorites">❤️</button>
+                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Truffle Mushroom Pizza to favorites">🤍</button>
                             </div>
                         </div>
                         <div class="dish-card__info">
@@ -201,21 +223,24 @@
                             <p class="dish-card__description">Wild woodland mushrooms, authentic white truffle oil, house-made mozzarella, fresh basil.</p>
                             <div class="dish-card__footer">
                                 <span class="dish-card__price">₹499</span>
-                                <button type="button" class="dish-card__add-btn" aria-label="Add Truffle Mushroom Pizza to cart">+</button>
+                                <button type="button" class="dish-card__add-btn" data-id="p1" data-name="Truffle Mushroom Pizza" data-price="499" aria-label="Add Truffle Mushroom Pizza to cart">+</button>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Dish Card 2 -->
-                    <article class="dish-card">
+                    <!-- Dish Card 2 (Burger) -->
+                    <article class="dish-card" data-id="b1" data-category="burgers">
                         <div class="dish-card__media">
                             <svg class="dish-card__placeholder" width="100%" height="200" fill="#1a1a20" xmlns="http://www.w3.org/2000/svg" aria-label="Smoked Wagyu Burger Graphic">
                                 <rect width="100%" height="100%" fill="#1a1a20" />
                                 <circle cx="140" cy="100" r="60" fill="#e04a27" opacity="0.8"/>
+                                <path d="M100 100 Q140 70 180 100" stroke="#ffb800" stroke-width="12" fill="none" stroke-linecap="round"/>
+                                <rect x="105" y="102" width="70" height="10" fill="#8b5a2b" rx="3" />
+                                <path d="M100 115 Q140 135 180 115" stroke="#ffb800" stroke-width="8" fill="none" stroke-linecap="round"/>
                             </svg>
                             <div class="dish-card__badges">
                                 <span class="dish-card__tag dish-card__tag--trending">Trending</span>
-                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Smoked Wagyu Burger to favorites">❤️</button>
+                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Smoked Wagyu Burger to favorites">🤍</button>
                             </div>
                         </div>
                         <div class="dish-card__info">
@@ -224,24 +249,26 @@
                                 <span class="dish-card__time">⏱️ 15-20 min</span>
                             </div>
                             <h3 class="dish-card__title">Smoked Wagyu Burger</h3>
-                            <p class="dish-card__description">Aged Wagyu beef patty, double cheddar, caramelised onions, signature hickory smoke sauce, brioche bun.</p>
+                            <p class="dish-card__description">Aged Wagyu beef patty, double cheddar, caramelised onions, signature hickory smoke sauce.</p>
                             <div class="dish-card__footer">
                                 <span class="dish-card__price">₹599</span>
-                                <button type="button" class="dish-card__add-btn" aria-label="Add Smoked Wagyu Burger to cart">+</button>
+                                <button type="button" class="dish-card__add-btn" data-id="b1" data-name="Smoked Wagyu Burger" data-price="599" aria-label="Add Smoked Wagyu Burger to cart">+</button>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Dish Card 3 -->
-                    <article class="dish-card">
+                    <!-- Dish Card 3 (Sushi) -->
+                    <article class="dish-card" data-id="s1" data-category="sushi">
                         <div class="dish-card__media">
                             <svg class="dish-card__placeholder" width="100%" height="200" fill="#1a1a20" xmlns="http://www.w3.org/2000/svg" aria-label="Crunchy Salmon Roll Graphic">
                                 <rect width="100%" height="100%" fill="#1a1a20" />
                                 <circle cx="140" cy="100" r="60" fill="#10b981" opacity="0.8"/>
+                                <rect x="110" y="80" width="60" height="40" rx="10" fill="#fff" />
+                                <rect x="120" y="90" width="40" height="20" rx="5" fill="#ff5e3a" />
                             </svg>
-                            <div class="dish-badges">
+                            <div class="dish-card__badges">
                                 <span class="dish-card__tag dish-card__tag--premium">Premium</span>
-                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Crunchy Salmon Roll to favorites">❤️</button>
+                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Crunchy Salmon Roll to favorites">🤍</button>
                             </div>
                         </div>
                         <div class="dish-card__info">
@@ -250,13 +277,104 @@
                                 <span class="dish-card__time">⏱️ 25-30 min</span>
                             </div>
                             <h3 class="dish-card__title">Crunchy Salmon Roll</h3>
-                            <p class="dish-card__description">Fresh Scottish Salmon, spicy mayo, crisp cucumber, toasted sesame seeds, topped with tempura crunch.</p>
+                            <p class="dish-card__description">Fresh Scottish Salmon, spicy mayo, crisp cucumber, toasted sesame seeds, tempura crunch.</p>
                             <div class="dish-card__footer">
                                 <span class="dish-card__price">₹649</span>
-                                <button type="button" class="dish-card__add-btn" aria-label="Add Crunchy Salmon Roll to cart">+</button>
+                                <button type="button" class="dish-card__add-btn" data-id="s1" data-name="Crunchy Salmon Roll" data-price="649" aria-label="Add Crunchy Salmon Roll to cart">+</button>
                             </div>
                         </div>
                     </article>
+
+                    <!-- Dish Card 4 (Pizza) -->
+                    <article class="dish-card" data-id="p2" data-category="pizza">
+                        <div class="dish-card__media">
+                            <svg class="dish-card__placeholder" width="100%" height="200" fill="#1a1a20" xmlns="http://www.w3.org/2000/svg" aria-label="Margherita Basil Pizza Graphic">
+                                <rect width="100%" height="100%" fill="#1a1a20" />
+                                <circle cx="140" cy="100" r="60" fill="#ffb800" opacity="0.8"/>
+                                <circle cx="140" cy="100" r="50" fill="#ff5e3a" />
+                                <path d="M125 85 Q140 100 135 120" stroke="#10b981" stroke-width="4" fill="none" stroke-linecap="round"/>
+                                <path d="M150 115 Q140 95 155 85" stroke="#10b981" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            </svg>
+                            <div class="dish-card__badges">
+                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Margherita Basil Pizza to favorites">🤍</button>
+                            </div>
+                        </div>
+                        <div class="dish-card__info">
+                            <div class="dish-card__meta">
+                                <span class="dish-card__rating">⭐ 4.6</span>
+                                <span class="dish-card__time">⏱️ 15-20 min</span>
+                            </div>
+                            <h3 class="dish-card__title">Margherita Basil Pizza</h3>
+                            <p class="dish-card__description">Classic sweet Italian marinara sauce, fresh mozzarella, extra virgin olive oil, sweet fresh basil leaves.</p>
+                            <div class="dish-card__footer">
+                                <span class="dish-card__price">₹399</span>
+                                <button type="button" class="dish-card__add-btn" data-id="p2" data-name="Margherita Basil Pizza" data-price="399" aria-label="Add Margherita Basil Pizza to cart">+</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dish Card 5 (Salad) -->
+                    <article class="dish-card" data-id="sa1" data-category="salads">
+                        <div class="dish-card__media">
+                            <svg class="dish-card__placeholder" width="100%" height="200" fill="#1a1a20" xmlns="http://www.w3.org/2000/svg" aria-label="Avocado Quinoa Salad Graphic">
+                                <rect width="100%" height="100%" fill="#1a1a20" />
+                                <circle cx="140" cy="100" r="60" fill="#10b981" opacity="0.8"/>
+                                <path d="M100 100 Q140 140 180 100 Z" fill="#2d2d35" />
+                                <circle cx="130" cy="90" r="10" fill="#a3e635" />
+                                <circle cx="150" cy="90" r="10" fill="#a3e635" />
+                                <circle cx="140" cy="105" r="7" fill="#84cc16" />
+                            </svg>
+                            <div class="dish-card__badges">
+                                <span class="dish-card__tag dish-card__tag--healthy">Healthy Choice</span>
+                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Avocado Quinoa Salad to favorites">🤍</button>
+                            </div>
+                        </div>
+                        <div class="dish-card__info">
+                            <div class="dish-card__meta">
+                                <span class="dish-card__rating">⭐ 4.5</span>
+                                <span class="dish-card__time">⏱️ 10-15 min</span>
+                            </div>
+                            <h3 class="dish-card__title">Avocado Quinoa Salad</h3>
+                            <p class="dish-card__description">Organic white quinoa, creamy Hass avocado, cherry tomatoes, cucumbers, tangy lemon-herb vinaigrette.</p>
+                            <div class="dish-card__footer">
+                                <span class="dish-card__price">₹349</span>
+                                <button type="button" class="dish-card__add-btn" data-id="sa1" data-name="Avocado Quinoa Salad" data-price="349" aria-label="Add Avocado Quinoa Salad to cart">+</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dish Card 6 (Dessert) -->
+                    <article class="dish-card" data-id="d1" data-category="desserts">
+                        <div class="dish-card__media">
+                            <svg class="dish-card__placeholder" width="100%" height="200" fill="#1a1a20" xmlns="http://www.w3.org/2000/svg" aria-label="Chocolate Lava Cake Graphic">
+                                <rect width="100%" height="100%" fill="#1a1a20" />
+                                <circle cx="140" cy="100" r="60" fill="#78350f" opacity="0.8"/>
+                                <path d="M110 110 C120 120, 130 90, 140 110 C150 90, 160 120, 170 110" stroke="#f43f5e" stroke-width="4" fill="none" stroke-linecap="round" />
+                            </svg>
+                            <div class="dish-card__badges">
+                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Chocolate Lava Cake to favorites">🤍</button>
+                            </div>
+                        </div>
+                        <div class="dish-card__info">
+                            <div class="dish-card__meta">
+                                <span class="dish-card__rating">⭐ 4.9</span>
+                                <span class="dish-card__time">⏱️ 15-20 min</span>
+                            </div>
+                            <h3 class="dish-card__title">Chocolate Lava Cake</h3>
+                            <p class="dish-card__description">Warm Belgian dark chocolate cake with a molten chocolate core, served with vanilla bean whip.</p>
+                            <div class="dish-card__footer">
+                                <span class="dish-card__price">₹249</span>
+                                <button type="button" class="dish-card__add-btn" data-id="d1" data-name="Chocolate Lava Cake" data-price="249" aria-label="Add Chocolate Lava Cake to cart">+</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- No Results Info -->
+                <div class="menu__no-results hide" id="no-results-message">
+                    <span class="menu__no-results-icon">🔍</span>
+                    <p class="menu__no-results-title">No dishes found</p>
+                    <p class="menu__no-results-text">We couldn't find any dishes matching your search or category selection. Try selecting another filter or searching for something else!</p>
                 </div>
             </div>
         </section>
@@ -272,13 +390,13 @@
                         </div>
                         <div class="tracking-card__estimate">
                             <span class="tracking-card__estimate-label">Estimated Delivery</span>
-                            <time class="tracking-card__time" datetime="12:45">12:45 PM (In 14 Mins)</time>
+                            <time class="tracking-card__time" id="estimate-time" datetime="12:45">12:45 PM (In 15 Mins)</time>
                         </div>
                     </div>
 
                     <!-- Timeline Steps -->
-                    <ol class="timeline" aria-label="Order progress tracker">
-                        <li class="timeline__step timeline__step--completed">
+                    <ol class="timeline" id="tracking-timeline" aria-label="Order progress tracker">
+                        <li class="timeline__step timeline__step--completed" data-step="0">
                             <div class="timeline__icon-wrapper">
                                 <span class="timeline__icon">📄</span>
                             </div>
@@ -288,7 +406,7 @@
                             </div>
                         </li>
 
-                        <li class="timeline__step timeline__step--completed">
+                        <li class="timeline__step" data-step="1">
                             <div class="timeline__icon-wrapper">
                                 <span class="timeline__icon">🍳</span>
                             </div>
@@ -298,7 +416,7 @@
                             </div>
                         </li>
 
-                        <li class="timeline__step timeline__step--active" aria-current="step">
+                        <li class="timeline__step" data-step="2">
                             <div class="timeline__icon-wrapper">
                                 <span class="timeline__icon">🚴</span>
                             </div>
@@ -308,7 +426,7 @@
                             </div>
                         </li>
 
-                        <li class="timeline__step">
+                        <li class="timeline__step" data-step="3">
                             <div class="timeline__icon-wrapper">
                                 <span class="timeline__icon">🏠</span>
                             </div>
@@ -318,6 +436,11 @@
                             </div>
                         </li>
                     </ol>
+
+                    <div class="tracking-card__simulator">
+                        <button type="button" class="btn btn--outline btn--sm" id="btn-next-step">Advance Order Status ➔</button>
+                        <button type="button" class="btn btn--text btn--sm text-muted" id="btn-reset-tracker">Reset Status</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -331,7 +454,7 @@
                     <h2 class="promo-card__title">Get 50% discount on your first order.</h2>
                     <p class="promo-card__text">Use coupon code <strong class="promo-card__coupon">FEAST50</strong> at checkout. Available for new registered users on selected gourmet items only.</p>
                     <div class="promo-card__actions">
-                        <a href="#menu" class="btn btn--primary">Claim Discount</a>
+                        <button type="button" class="btn btn--primary" id="btn-claim-discount">Claim Discount</button>
                         <a href="#terms" class="promo-card__link">Terms Apply</a>
                     </div>
                 </div>
@@ -340,7 +463,7 @@
                 <div class="newsletter-card">
                     <h3 class="newsletter-card__title">Stay in the Loop</h3>
                     <p class="newsletter-card__text">Subscribe to our newsletter to receive curated recipe guides, weekend flash discounts, and member-only coupons.</p>
-                    <form class="newsletter-card__form" action="/subscribe" method="POST">
+                    <form class="newsletter-card__form" id="newsletter-form">
                         <div class="newsletter-card__input-wrapper">
                             <label for="newsletter-email" class="visually-hidden">Email Address</label>
                             <input type="email" id="newsletter-email" class="newsletter-card__input" placeholder="Enter your email address" required>
@@ -415,6 +538,156 @@
         </div>
     </footer>
 
+    <!-- Off-Canvas Sidebar Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer" aria-hidden="true">
+        <div class="cart-drawer__overlay" id="cart-drawer-overlay"></div>
+        <div class="cart-drawer__wrapper">
+            <div class="cart-drawer__header">
+                <h3 class="cart-drawer__title">Your Order</h3>
+                <button type="button" class="cart-drawer__close-btn" id="cart-drawer-close" aria-label="Close cart">&times;</button>
+            </div>
+            <div class="cart-drawer__body" id="cart-drawer-items">
+                <!-- Dynamically rendered cart items will appear here -->
+                <div class="cart-drawer__empty" id="cart-drawer-empty">
+                    <span class="cart-drawer__empty-icon">🛒</span>
+                    <p class="cart-drawer__empty-text">Your cart is empty.</p>
+                    <p class="cart-drawer__empty-subtext">Add some delicious dishes to get started!</p>
+                </div>
+            </div>
+            <div class="cart-drawer__footer">
+                <div class="cart-drawer__summary">
+                    <span class="cart-drawer__total-label">Subtotal</span>
+                    <span class="cart-drawer__total-price" id="cart-drawer-total">₹0</span>
+                </div>
+                <button type="button" class="btn btn--primary cart-drawer__checkout-btn" id="cart-drawer-checkout" disabled>Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Modal Overlay -->
+    <div class="auth-modal" id="auth-modal" aria-hidden="true">
+        <div class="auth-modal__overlay" id="auth-modal-overlay"></div>
+        <div class="auth-modal__wrapper">
+            <!-- Left Panel: Graphic & Welcome -->
+            <div class="auth-modal__graphic">
+                <div class="auth-modal__graphic-content">
+                    <span class="auth-modal__logo-text">Feast<span class="logo__text--accent">Flow</span></span>
+                    <h3>Welcome back!</h3>
+                    <p>Log in to access your culinary favorites, track orders in real-time, and get exclusive member discounts.</p>
+                </div>
+                <svg class="auth-modal__svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="100" cy="100" r="80" fill="url(#auth-gradient)" opacity="0.15" />
+                    <defs>
+                        <linearGradient id="auth-gradient" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#ff5e3a" />
+                            <stop offset="1" stop-color="#ffb800" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            
+            <!-- Right Panel: Tabs & Forms -->
+            <div class="auth-modal__form-container">
+                <button type="button" class="auth-modal__close-btn" id="auth-modal-close" aria-label="Close modal">&times;</button>
+                
+                <!-- Tab Headers -->
+                <div class="auth-tabs">
+                    <button type="button" class="auth-tab auth-tab--active" id="tab-signin">Sign In</button>
+                    <button type="button" class="auth-tab" id="tab-signup">Sign Up</button>
+                </div>
+                
+                <!-- Sign In Form -->
+                <form class="auth-form" id="form-signin" novalidate>
+                    <div class="form-group">
+                        <label for="signin-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📧</span>
+                            <input type="email" id="signin-email" placeholder="name@domain.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="signin-password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="signin-remember">
+                            <span class="checkbox-custom"></span>
+                            Remember me
+                        </label>
+                        <a href="#forgot" class="forgot-link" id="btn-forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn--primary auth-submit-btn">Sign In</button>
+                </form>
+                
+                <!-- Sign Up Form -->
+                <form class="auth-form hide" id="form-signup" novalidate>
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="signup-name" placeholder="John Doe" required>
+                        </div>
+                        <span class="validation-message text-danger hide" id="signup-name-err"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📧</span>
+                            <input type="email" id="signup-email" placeholder="name@domain.com" required>
+                        </div>
+                        <span class="validation-message text-danger hide" id="signup-email-err"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="signup-password" placeholder="Min. 8 characters" required>
+                        </div>
+                        <span class="validation-message text-danger hide" id="signup-password-err"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="signup-confirm-password" placeholder="Confirm password" required>
+                        </div>
+                        <span class="validation-message text-danger hide" id="signup-confirm-err"></span>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="signup-terms" required>
+                            <span class="checkbox-custom"></span>
+                            I agree to the <a href="#terms" class="auth-inline-link">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn--primary auth-submit-btn">Create Account</button>
+                </form>
+
+                <!-- Social Sign In / Sign Up mock spacer -->
+                <div class="auth-divider">
+                    <span>or connect with</span>
+                </div>
+                <div class="social-login">
+                    <button type="button" class="btn btn--secondary social-btn" id="social-google">
+                        <span>🌐</span> Google
+                    </button>
+                    <button type="button" class="btn btn--secondary social-btn" id="social-facebook">
+                        <span>📘</span> Facebook
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
 </body>
 
 </html>
