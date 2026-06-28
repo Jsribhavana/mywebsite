@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastFlow - Gourmet Food Delivered Instantly</title>
+</head>
+
+<body>
+
+    <!-- Main Header & Navigation -->
+    <header class="header">
+        <div class="header__container">
+            <!-- Brand Logo -->
+            <a href="#" class="logo" aria-label="FeastFlow Home">
+                <span class="logo__text">Feast<span class="logo__text--accent">Flow</span></span>
+            </a>
+
+            <!-- Search Bar -->
+            <form class="search-bar" role="search" action="/search" method="GET">
+                <label for="search-input" class="visually-hidden">Search dishes, cuisines, or restaurants</label>
+                <input type="search" id="search-input" class="search-bar__input" placeholder="Search dishes, cuisines, or restaurants...">
+                <button type="submit" class="search-bar__button" aria-label="Submit search">Search</button>
+            </form>
+
+            <!-- Navigation Links -->
+            <nav class="nav" aria-label="Main Navigation">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link nav__link--active" aria-current="page">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#menu" class="nav__link">Menu</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#tracking" class="nav__link">Track Order</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#offers" class="nav__link">Offers</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- User Actions -->
+            <div class="header__actions">
+                <a href="#cart" class="cart-btn" aria-label="Shopping Cart">
+                    <span class="cart-btn__icon">🛒</span>
+                    <span class="cart-btn__badge" aria-label="4 items in cart">4</span>
+                </a>
+                <a href="#login" class="btn btn--outline">Sign In</a>
+                <a href="#register" class="btn btn--primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- Hero / Showcase Section -->
+        <section class="hero" id="home">
+            <div class="hero__container">
+                <div class="hero__content">
+                    <span class="hero__badge">Top Rated Food Delivery App of 2026</span>
+                    <h1 class="hero__title">Delicious food, delivered <span class="hero__title--highlight">to your doorstep</span>.</h1>
+                    <p class="hero__description">Order from your favorite local restaurants, tracked in real-time, prepared with premium ingredients, and delivered hot and fresh.</p>
+                    
+                    <!-- Address / Find Food Form -->
+                    <form class="address-locator" action="/find-food" method="GET">
+                        <div class="address-locator__wrapper">
+                            <label for="delivery-address" class="visually-hidden">Enter delivery address</label>
+                            <span class="address-locator__icon">📍</span>
+                            <input type="text" id="delivery-address" class="address-locator__input" placeholder="Enter your delivery address..." required>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Find Food</button>
+                    </form>
+
+                    <!-- Core Metrics Grid -->
+                    <div class="hero__stats">
+                        <div class="stat-card">
+                            <span class="stat-card__number">500+</span>
+                            <span class="stat-card__label">Restaurants</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-card__number">20k+</span>
+                            <span class="stat-card__label">Active Users</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-card__number">15 min</span>
+                            <span class="stat-card__label">Avg Delivery Time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic Area -->
+                <figure class="hero__graphic-wrapper">
+                    <!-- Semantic SVG representation of food/delivery vector art -->
+                    <svg class="hero__svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="500" height="500">
+                        <circle cx="250" cy="250" r="210" fill="#2d2d35" />
+                        <circle cx="250" cy="250" r="190" fill="#141418" stroke="#ff5e3a" stroke-width="6" />
+                        <circle cx="250" cy="250" r="160" fill="#ffb800" />
+                        <circle cx="190" cy="200" r="24" fill="#d9381e" />
+                        <circle cx="310" cy="210" r="20" fill="#d9381e" />
+                        <circle cx="210" cy="310" r="22" fill="#d9381e" />
+                        <circle cx="290" cy="300" r="25" fill="#d9381e" />
+                        <path d="M245 150 C235 170, 265 180, 245 190 C255 170, 225 160, 245 150 Z" fill="#10b981" />
+                        <path d="M150 260 C140 280, 170 290, 150 300 C160 280, 130 270, 150 260 Z" fill="#10b981" />
+                        <path d="M330 250 C320 270, 350 280, 330 290 C340 270, 310 260, 330 250 Z" fill="#10b981" />
+                    </svg>
+                    <figcaption class="visually-hidden">Signature FeastFlow Gourmet Pizza Plate illustration</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Cuisine Categories Section -->
+        <section class="categories" id="categories">
+            <div class="categories__container">
+                <div class="section-header">
+                    <h2 class="section-header__title">Explore Cuisines</h2>
+                    <p class="section-header__subtitle">Browse through our handpicked culinary categories</p>
+                </div>
+
+                <div class="categories__grid">
+                    <!-- Pizza -->
+                    <div class="category-card category-card--active">
+                        <div class="category-card__icon-wrapper">
+                            <span class="category-card__icon">🍕</span>
+                        </div>
+                        <span class="category-card__name">Pizza</span>
+                    </div>
+
+                    <!-- Burgers -->
+                    <div class="category-card">
+                        <div class="category-card__icon-wrapper">
+                            <span class="category-card__icon">🍔</span>
+                        </div>
+                        <span class="category-card__name">Burgers</span>
+                    </div>
+
+                    <!-- Sushi -->
+                    <div class="category-card">
+                        <div class="category-card__icon-wrapper">
+                            <span class="category-card__icon">🍣</span>
+                        </div>
+                        <span class="category-card__name">Sushi</span>
+                    </div>
+
+                    <!-- Desserts -->
+                    <div class="category-card">
+                        <div class="category-card__icon-wrapper">
+                            <span class="category-card__icon">🍰</span>
+                        </div>
+                        <span class="category-card__name">Desserts</span>
+                    </div>
+
+                    <!-- Salads -->
+                    <div class="category-card">
+                        <div class="category-card__icon-wrapper">
+                            <span class="category-card__icon">🥗</span>
+                        </div>
+                        <span class="category-card__name">Salads</span>
+                    </div>
+
+                    <!-- Drinks -->
+                    <div class="category-card">
+                        <div class="category-card__icon-wrapper">
+                            <span class="category-card__icon">🍹</span>
+                        </div>
+                        <span class="category-card__name">Drinks</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Menu Items Section -->
+        <section class="menu" id="menu">
+            <div class="menu__container">
+                <div class="section-header">
+                    <h2 class="section-header__title">Popular Dishes</h2>
+                    <p class="section-header__subtitle">Ordered most frequently by food lovers near you</p>
+                </div>
+
+                <div class="menu__grid">
+                    <!-- Dish Card 1 -->
+                    <article class="dish-card">
+                        <div class="dish-card__media">
+                            <svg class="dish-card__placeholder" width="100%" height="200" fill="#1a1a20" xmlns="http://www.w3.org/2000/svg" aria-label="Truffle Mushroom Pizza Graphic">
+                                <rect width="100%" height="100%" fill="#1a1a20" />
+                                <circle cx="140" cy="100" r="60" fill="#ffb800" opacity="0.8"/>
+                            </svg>
+                            <div class="dish-card__badges">
+                                <span class="dish-card__tag dish-card__tag--bestseller">Bestseller</span>
+                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Truffle Mushroom Pizza to favorites">❤️</button>
+                            </div>
+                        </div>
+                        <div class="dish-card__info">
+                            <div class="dish-card__meta">
+                                <span class="dish-card__rating">⭐ 4.9</span>
+                                <span class="dish-card__time">⏱️ 20-25 min</span>
+                            </div>
+                            <h3 class="dish-card__title">Truffle Mushroom Pizza</h3>
+                            <p class="dish-card__description">Wild woodland mushrooms, authentic white truffle oil, house-made mozzarella, fresh basil.</p>
+                            <div class="dish-card__footer">
+                                <span class="dish-card__price">₹499</span>
+                                <button type="button" class="dish-card__add-btn" aria-label="Add Truffle Mushroom Pizza to cart">+</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dish Card 2 -->
+                    <article class="dish-card">
+                        <div class="dish-card__media">
+                            <svg class="dish-card__placeholder" width="100%" height="200" fill="#1a1a20" xmlns="http://www.w3.org/2000/svg" aria-label="Smoked Wagyu Burger Graphic">
+                                <rect width="100%" height="100%" fill="#1a1a20" />
+                                <circle cx="140" cy="100" r="60" fill="#e04a27" opacity="0.8"/>
+                            </svg>
+                            <div class="dish-card__badges">
+                                <span class="dish-card__tag dish-card__tag--trending">Trending</span>
+                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Smoked Wagyu Burger to favorites">❤️</button>
+                            </div>
+                        </div>
+                        <div class="dish-card__info">
+                            <div class="dish-card__meta">
+                                <span class="dish-card__rating">⭐ 4.8</span>
+                                <span class="dish-card__time">⏱️ 15-20 min</span>
+                            </div>
+                            <h3 class="dish-card__title">Smoked Wagyu Burger</h3>
+                            <p class="dish-card__description">Aged Wagyu beef patty, double cheddar, caramelised onions, signature hickory smoke sauce, brioche bun.</p>
+                            <div class="dish-card__footer">
+                                <span class="dish-card__price">₹599</span>
+                                <button type="button" class="dish-card__add-btn" aria-label="Add Smoked Wagyu Burger to cart">+</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dish Card 3 -->
+                    <article class="dish-card">
+                        <div class="dish-card__media">
+                            <svg class="dish-card__placeholder" width="100%" height="200" fill="#1a1a20" xmlns="http://www.w3.org/2000/svg" aria-label="Crunchy Salmon Roll Graphic">
+                                <rect width="100%" height="100%" fill="#1a1a20" />
+                                <circle cx="140" cy="100" r="60" fill="#10b981" opacity="0.8"/>
+                            </svg>
+                            <div class="dish-badges">
+                                <span class="dish-card__tag dish-card__tag--premium">Premium</span>
+                                <button type="button" class="dish-card__favorite-btn" aria-label="Add Crunchy Salmon Roll to favorites">❤️</button>
+                            </div>
+                        </div>
+                        <div class="dish-card__info">
+                            <div class="dish-card__meta">
+                                <span class="dish-card__rating">⭐ 4.7</span>
+                                <span class="dish-card__time">⏱️ 25-30 min</span>
+                            </div>
+                            <h3 class="dish-card__title">Crunchy Salmon Roll</h3>
+                            <p class="dish-card__description">Fresh Scottish Salmon, spicy mayo, crisp cucumber, toasted sesame seeds, topped with tempura crunch.</p>
+                            <div class="dish-card__footer">
+                                <span class="dish-card__price">₹649</span>
+                                <button type="button" class="dish-card__add-btn" aria-label="Add Crunchy Salmon Roll to cart">+</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Order Status Timeline -->
+        <section class="order-tracking" id="tracking">
+            <div class="order-tracking__container">
+                <div class="tracking-card">
+                    <div class="tracking-card__header">
+                        <div class="tracking-card__order-info">
+                            <h3 class="tracking-card__title">Live Order Status</h3>
+                            <p class="tracking-card__id">Order ID: #FF-9024-818</p>
+                        </div>
+                        <div class="tracking-card__estimate">
+                            <span class="tracking-card__estimate-label">Estimated Delivery</span>
+                            <time class="tracking-card__time" datetime="12:45">12:45 PM (In 14 Mins)</time>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Steps -->
+                    <ol class="timeline" aria-label="Order progress tracker">
+                        <li class="timeline__step timeline__step--completed">
+                            <div class="timeline__icon-wrapper">
+                                <span class="timeline__icon">📄</span>
+                            </div>
+                            <div class="timeline__details">
+                                <span class="timeline__label">Order Placed</span>
+                                <time class="timeline__time" datetime="12:15">12:15 PM</time>
+                            </div>
+                        </li>
+
+                        <li class="timeline__step timeline__step--completed">
+                            <div class="timeline__icon-wrapper">
+                                <span class="timeline__icon">🍳</span>
+                            </div>
+                            <div class="timeline__details">
+                                <span class="timeline__label">Preparing</span>
+                                <time class="timeline__time" datetime="12:22">12:22 PM</time>
+                            </div>
+                        </li>
+
+                        <li class="timeline__step timeline__step--active" aria-current="step">
+                            <div class="timeline__icon-wrapper">
+                                <span class="timeline__icon">🚴</span>
+                            </div>
+                            <div class="timeline__details">
+                                <span class="timeline__label">Out for Delivery</span>
+                                <span class="timeline__time">On the way</span>
+                            </div>
+                        </li>
+
+                        <li class="timeline__step">
+                            <div class="timeline__icon-wrapper">
+                                <span class="timeline__icon">🏠</span>
+                            </div>
+                            <div class="timeline__details">
+                                <span class="timeline__label">Delivered</span>
+                                <span class="timeline__time">Soon</span>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Two-column Section: Offers & Newsletter -->
+        <section class="promotions-grid" id="offers">
+            <div class="promotions-grid__container">
+                <!-- Promo Coupon Area -->
+                <div class="promo-card">
+                    <span class="promo-card__tag">Limited Time Offer</span>
+                    <h2 class="promo-card__title">Get 50% discount on your first order.</h2>
+                    <p class="promo-card__text">Use coupon code <strong class="promo-card__coupon">FEAST50</strong> at checkout. Available for new registered users on selected gourmet items only.</p>
+                    <div class="promo-card__actions">
+                        <a href="#menu" class="btn btn--primary">Claim Discount</a>
+                        <a href="#terms" class="promo-card__link">Terms Apply</a>
+                    </div>
+                </div>
+
+                <!-- Newsletter Subscriber Area -->
+                <div class="newsletter-card">
+                    <h3 class="newsletter-card__title">Stay in the Loop</h3>
+                    <p class="newsletter-card__text">Subscribe to our newsletter to receive curated recipe guides, weekend flash discounts, and member-only coupons.</p>
+                    <form class="newsletter-card__form" action="/subscribe" method="POST">
+                        <div class="newsletter-card__input-wrapper">
+                            <label for="newsletter-email" class="visually-hidden">Email Address</label>
+                            <input type="email" id="newsletter-email" class="newsletter-card__input" placeholder="Enter your email address" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Information -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__grid">
+                <!-- Column 1: Brand Info -->
+                <div class="footer__col footer__col--brand">
+                    <a href="#" class="logo logo--footer" aria-label="FeastFlow Home">
+                        <span class="logo__text">Feast<span class="logo__text--accent">Flow</span></span>
+                    </a>
+                    <p class="footer__description">Bringing you chef-curated meals from the finest culinary establishments directly to your home.</p>
+                </div>
+
+                <!-- Column 2: Quick Navigation -->
+                <nav class="footer__col" aria-label="Footer quick links">
+                    <h4 class="footer__title">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Home</a></li>
+                        <li><a href="#menu" class="footer__link">Our Menu</a></li>
+                        <li><a href="#tracking" class="footer__link">Track Order</a></li>
+                        <li><a href="#offers" class="footer__link">Special Offers</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Column 3: Corporate Info / Support -->
+                <nav class="footer__col" aria-label="Footer support links">
+                    <h4 class="footer__title">Support</h4>
+                    <ul class="footer__links">
+                        <li><a href="#help" class="footer__link">Help Center</a></li>
+                        <li><a href="#partner" class="footer__link">Partner with Us</a></li>
+                        <li><a href="#refunds" class="footer__link">Refund Policy</a></li>
+                        <li><a href="#privacy" class="footer__link">Terms & Privacy</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Column 4: Contact & Socials -->
+                <div class="footer__col">
+                    <h4 class="footer__title">Contact Us</h4>
+                    <address class="footer__address">
+                        <div class="footer__contact-item">
+                            <span class="footer__contact-icon">📧</span>
+                            <a href="mailto:support@feastflow.com" class="footer__contact-link">support@feastflow.com</a>
+                        </div>
+                        <div class="footer__contact-item">
+                            <span class="footer__contact-icon">📞</span>
+                            <a href="tel:+919876543210" class="footer__contact-link">+91 98765 43210</a>
+                        </div>
+                    </address>
+                </div>
+            </div>
+
+            <!-- Footer Bottom: Legals & Social Media Links -->
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2026 FeastFlow. All rights reserved.</p>
+                <div class="footer__socials" aria-label="Social media networks">
+                    <a href="https://facebook.com" class="social-link" aria-label="Facebook">📘 Facebook</a>
+                    <a href="https://twitter.com" class="social-link" aria-label="Twitter">🐦 Twitter</a>
+                    <a href="https://instagram.com" class="social-link" aria-label="Instagram">📸 Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
